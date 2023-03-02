@@ -1,3 +1,13 @@
-import { createConnection } from 'typeorm';
+import { DataSource } from "typeorm";
 
-(async () => await createConnection())();
+import { dataSource } from "./data-source";
+
+function createConnection(host = "database"): Promise<DataSource> {
+  return dataSource
+    .setOptions({
+      host,
+    })
+    .initialize();
+}
+
+export { createConnection };
