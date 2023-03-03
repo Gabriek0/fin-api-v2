@@ -5,6 +5,7 @@ import { ShowUserProfileUseCase } from "./ShowUserProfileUseCase";
 import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
 
 import { User } from "../../entities/User";
+import { ShowUserProfileError } from "./ShowUserProfileError";
 
 let inMemoryUsersRepository: IUsersRepository;
 let showUserProfileUseCase: ShowUserProfileUseCase;
@@ -31,6 +32,14 @@ describe("ShowUserProfileUseCase", () => {
 
     expect(userProfile).toBeDefined();
     expect(userProfile).toBeInstanceOf(User);
-    expect(userProfile).toHaveProperty("createdAt");
+    expect(userProfile).toHaveProperty("id");
+  });
+
+  it("should not be able show user profile with id inexistent", async () => {
+    await createUserUseCase.execute(user);
+
+    await expect(
+      async () => await showUserProfileUseCase.execute("XXX")
+    ).rejects.toBeInstanceOf(ShowUserProfileError);
   });
 });
