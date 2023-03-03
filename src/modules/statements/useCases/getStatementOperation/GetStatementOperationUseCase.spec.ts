@@ -12,6 +12,8 @@ import { ICreateUserDTO } from "../../../users/useCases/createUser/ICreateUserDT
 import { ICreateStatementDTO } from "../createStatement/ICreateStatementDTO";
 import { OperationType } from "../../entities/Statement";
 
+import { GetStatementOperationError } from "../getStatementOperation/GetStatementOperationError";
+
 let createUserUseCase: CreateUserUseCase;
 let createStatementUseCase: CreateStatementUseCase;
 let getStatementOperationUseCase: GetStatementOperationUseCase;
@@ -73,5 +75,57 @@ describe("GetStatementOperationUseCase", () => {
 
     expect(getStatement).toHaveProperty("id");
     expect(getStatement.type).toEqual(OperationType.DEPOSIT);
+  });
+
+  it("should not be able get a statement operation with non-existent user", async () => {
+    const userCreated = await createUserUseCase.execute(user);
+
+    const statement: ICreateStatementDTO = {
+      user_id: userCreated.id,
+      amount: 150,
+      description: "Statement deposit test",
+      type: OperationType.DEPOSIT,
+    };
+
+    const statementCreated = await createStatementUseCase.execute(statement);
+
+    const getStatement = async () => {
+      if (!statementCreated.id) return;
+
+      await getStatementOperationUseCase.execute({
+        user_id: "12345",
+        statement_id: statementCreated.id,
+      });
+    };
+
+    await expect(getStatement).rejects.toBeInstanceOf(
+      GetStatementOperationError.UserNotFound
+    );
+  });
+
+  it("should not be able get a statement operation with non-existent statement", async () => {
+    const userCreated = await createUserUseCase.execute(user);
+
+    const statement: ICreateStatementDTO = {
+      user_id: userCreated.id,
+      amount: 150,
+      description: "Statement deposit test",
+      type: OperationType.DEPOSIT,
+    };
+
+    const statementCreated = await createStatementUseCase.execute(statement);
+
+    const getStatement = async () => {
+      if (!statementCreated.id) return;
+
+      await getStatementOperationUseCase.execute({
+        user_id: userCreated.id,
+        statement_id: "123",
+      });
+    };
+
+    await expect(getStatement).rejects.toBeInstanceOf(
+      GetStatementOperationError.StatementNotFound
+    );
   });
 });
