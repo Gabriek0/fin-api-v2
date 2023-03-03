@@ -2,6 +2,7 @@ import { InMemoryUsersRepository } from "../../repositories/in-memory/InMemoryUs
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { CreateUserUseCase } from "./CreateUserUseCase";
 import { ICreateUserDTO } from "./ICreateUserDTO";
+import { CreateUserError } from "./CreateUserError";
 
 let createUserUseCase: CreateUserUseCase;
 let inMemoryUsersRepository: IUsersRepository;
@@ -32,5 +33,10 @@ describe("Create User Use Case", () => {
     expect(user).toHaveProperty("id");
   });
 
-  // it("should be not able create a user that already exists", async () => {});
+  it("should be not able create a user that already exists", async () => {
+    await expect(async () => {
+      await createUserUseCase.execute(first_user);
+      await createUserUseCase.execute(second_user);
+    }).rejects.toBeInstanceOf(CreateUserError);
+  });
 });
