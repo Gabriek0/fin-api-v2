@@ -61,4 +61,28 @@ describe("CreateStatementUseCase", () => {
       await createStatementUseCase.execute(statement);
     }).rejects.toBeInstanceOf(AppError);
   });
+
+  it("should not be able to create a statement for a withdraw that is larger than the balance", async () => {
+    expect(async () => {
+      await createUserUseCase.execute(user);
+
+      const first_statement: ICreateStatementDTO = {
+        user_id: "1",
+        amount: 100,
+        description: "Deposit test",
+        type: OperationType.DEPOSIT,
+      };
+
+      await createStatementUseCase.execute(first_statement);
+
+      const second_statement: ICreateStatementDTO = {
+        user_id: "1",
+        amount: 1000,
+        description: "Deposit test",
+        type: OperationType.WITHDRAW,
+      };
+
+      await createStatementUseCase.execute(second_statement);
+    }).rejects.toBeInstanceOf(AppError);
+  });
 });
