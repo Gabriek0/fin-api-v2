@@ -1,8 +1,9 @@
 import "reflect-metadata";
 import "express-async-errors";
 
-import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
+import express from "express";
 
 import "./database";
 import "./shared/container";
@@ -13,6 +14,8 @@ import { createConnection } from "./database";
 createConnection("database")
   .then(async () => console.log("Initializing the database..."))
   .catch((err) => console.log(err));
+
+dotenv.config();
 
 const app = express();
 
