@@ -4,6 +4,7 @@ import { ICreateUserDTO } from "../createUser/ICreateUserDTO";
 import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
 import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase";
 import { InMemoryUsersRepository } from "../../repositories/in-memory/InMemoryUsersRepository";
+import { IncorrectEmailOrPasswordError } from "./IncorrectEmailOrPasswordError";
 
 const user: ICreateUserDTO = {
   name: "John",
@@ -33,5 +34,27 @@ describe("AuthenticateUseCase", () => {
     });
 
     expect(userAuthenticated).toHaveProperty("token");
+  });
+
+  it("should not be able authenticate user if email is incorrect", async () => {
+    expect(async () => {
+      await createUserUseCase.execute(user);
+
+      await authenticateUserUseCase.execute({
+        email: "james@example.com",
+        password: "12345",
+      });
+    }).rejects.toBeInstanceOf(IncorrectEmailOrPasswordError);
+  });
+
+  it("should not be able authenticate incorrect password", async () => {
+    expect(async () => {
+      await createUserUseCase.execute(user);
+
+      await authenticateUserUseCase.execute({
+        email: user.email,
+        password: "123",
+      });
+    }).rejects.toBeInstanceOf(IncorrectEmailOrPasswordError);
   });
 });
