@@ -47,7 +47,7 @@ describe("CreateStatementUseCase", () => {
     expect(statementCreated.amount).toEqual(statement.amount);
   });
 
-  it("should not be able create a statement to user inexistent", async () => {
+  it("should not be able create a statement to non-existent user", async () => {
     expect(async () => {
       await createUserUseCase.execute(user);
 

@@ -35,7 +35,7 @@ describe("ShowUserProfileUseCase", () => {
     expect(userProfile).toHaveProperty("id");
   });
 
-  it("should not be able show user profile with id inexistent", async () => {
+  it("should not be able show user profile with non-existent id", async () => {
     await createUserUseCase.execute(user);
 
     await expect(

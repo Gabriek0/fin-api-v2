@@ -13,6 +13,7 @@ import { CreateStatementUseCase } from "../createStatement/CreateStatementUseCas
 import { ICreateUserDTO } from "../../../users/useCases/createUser/ICreateUserDTO";
 import { ICreateStatementDTO } from "../createStatement/ICreateStatementDTO";
 import { OperationType } from "../../entities/Statement";
+import { GetBalanceError } from "./GetBalanceError";
 
 let inMemoryUsersRepository: IUsersRepository;
 let inMemoryStatementsRepository: IStatementsRepository;
@@ -65,10 +66,24 @@ describe("GetBalanceUseCase", () => {
       user_id: userCreated.id,
     });
 
-    console.log(balance);
-
     expect(balance.balance).toEqual(200);
     expect(balance.statement).toHaveLength(2);
     expect(balance).toHaveProperty("balance");
+  });
+
+  it("should not be able to get the balance for a non-existent user", async () => {
+    try {
+      await getBalanceUseCase.execute({
+        user_id: "XXX",
+      });
+    } catch (err) {
+      console.log(err);
+
+      if (err instanceof GetBalanceError) {
+        expect(err.message).toBe("User not found");
+      }
+
+      expect(err).toBeInstanceOf(GetBalanceError);
+    }
   });
 });
