@@ -1,5 +1,3 @@
-import "reflect-metadata";
-
 import { ICreateUserDTO } from "../createUser/ICreateUserDTO";
 import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
 import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase";
