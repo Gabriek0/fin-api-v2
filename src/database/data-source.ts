@@ -14,7 +14,7 @@ const dataSource = new DataSource({
   synchronize: false,
   subscribers: [],
   entities: [User, Statement],
-  migrations: ["../database/migrations/*.ts"],
+  migrations: ["./src/database/migrations/*.ts"],
 });
 
 export { dataSource };
