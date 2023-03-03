@@ -1,3 +1,4 @@
+import { AppError } from "../../../../shared/errors/AppError";
 import { InMemoryUsersRepository } from "../../../users/repositories/in-memory/InMemoryUsersRepository";
 import { IUsersRepository } from "../../../users/repositories/IUsersRepository";
 import { CreateUserUseCase } from "../../../users/useCases/createUser/CreateUserUseCase";
@@ -42,9 +43,22 @@ describe("CreateStatementUseCase", () => {
 
     const statementCreated = await createStatementUseCase.execute(statement);
 
-    console.log(statementCreated);
-
     expect(statementCreated).toHaveProperty("id");
     expect(statementCreated.amount).toEqual(statement.amount);
+  });
+
+  it("should not be able create a statement to user inexistent", async () => {
+    expect(async () => {
+      await createUserUseCase.execute(user);
+
+      const statement: ICreateStatementDTO = {
+        user_id: "1",
+        amount: 100,
+        description: "Deposit test",
+        type: OperationType.DEPOSIT,
+      };
+
+      await createStatementUseCase.execute(statement);
+    }).rejects.toBeInstanceOf(AppError);
   });
 });
