@@ -77,8 +77,6 @@ describe("GetBalanceUseCase", () => {
         user_id: "XXX",
       });
     } catch (err) {
-      console.log(err);
-
       if (err instanceof GetBalanceError) {
         expect(err.message).toBe("User not found");
       }
