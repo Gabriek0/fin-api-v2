@@ -19,7 +19,7 @@ const second_user: ICreateUserDTO = {
   password: "12345",
 };
 
-describe("Create User Use Case", () => {
+describe("CreateUserUseCase", () => {
   beforeEach(() => {
     // create instances
     inMemoryUsersRepository = new InMemoryUsersRepository();
