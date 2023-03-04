@@ -6,13 +6,12 @@ import express from "express";
 
 import "./database";
 import "./shared/container";
+
 import { router } from "./routes";
 import { AppError } from "./shared/errors/AppError";
 import { createConnection } from "./database";
 
-createConnection("database")
-  .then(async () => console.log("Initializing the database..."))
-  .catch((err) => console.log(err));
+createConnection("");
 
 dotenv.config();
 
