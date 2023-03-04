@@ -7,7 +7,7 @@
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn ./src/server.ts",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
     "migration-run": "ts-node-dev  ./node_modules/typeorm/cli.js migration:run -d ./src/database/index.ts",
-    "test": "jest"
+    "test": "NODE_ENV=test jest --runInBand"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

@@ -9,7 +9,7 @@ const dataSource = new DataSource({
   host: "localhost",
   username: "postgres",
   password: "docker",
-  database: "fin_api",
+  database: process.env.NODE_ENV === "test" ? "fin_api_test" : "fin_api",
   logging: false,
   synchronize: false,
   subscribers: [],
