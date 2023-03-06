@@ -1,4 +1,5 @@
 import { getRepository, Repository } from "typeorm";
+import { dataSource } from "../../../database/data-source";
 
 import { Statement } from "../entities/Statement";
 import { ICreateStatementDTO } from "../useCases/createStatement/ICreateStatementDTO";
@@ -10,7 +11,7 @@ export class StatementsRepository implements IStatementsRepository {
   private repository: Repository<Statement>;
 
   constructor() {
-    this.repository = getRepository(Statement);
+    this.repository = dataSource.getRepository(Statement);
   }
 
   async create({
