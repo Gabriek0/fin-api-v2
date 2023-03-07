@@ -11,8 +11,6 @@
   <a href="#casos-de-uso">Casos de Uso</a>
 </div>
 
----
-
 ### :computer: Projeto {#projects}
 
 FinAPI é uma API para controles financeiros. Dentro da trilha do Ignite, construímos a API sem aplicar estruturação de pastas, utilização de banco de dados, princípios SOLID, e Docker. Essa versão 2.0 trás todos esses detalhes, porém a aplicação já vem pré-elaborada.
