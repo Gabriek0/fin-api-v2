@@ -12,11 +12,35 @@ A versão antiga você pode conferir aqui 👉 [FinAPI](https://github.com/Gabri
 
 Assim, o principal desafio aqui é a construção de `Testes Unitários` e `Testes de Integração` utilizando o _Jest_.
 
-## Testes Unitários
+### :nut_and_bolt: Tecnologias
+
+Esse projeto foi desenvolvido com as seguintes tecnologias:
+
+- [TypeScript][typescript]
+- [TypeORM][typeorm]
+- [PostgreSQL][postgresql]
+- [Nodejs][nodejs]
+- [Jest][jest]
+- [Supertest][supertest]
+
+[typescript]: https://www.typescriptlang.org/
+[nodejs]: https://nodejs.org/en/
+[postgresql]: https://www.postgresql.org/
+[typeorm]: https://typeorm.io/
+[jest]: https://jestjs.io/
+[supertest]: https://www.npmjs.com/package/supertest
+
+### 🧪 Testes Unitários
 
 Os testes unitários são aplicados nos casos de uso da aplicação. Em ordem temos, dois módulos: **users** e **statements**
 
+### 🧪 Testes Integrados
+
+Os testes integrados estão aplicados de acordo com os controllers. Aplicamos uma conexão com o banco de dados e fazemos uma requisição utilizando o **request** da biblioteca `supertest`.
+
 ### Casos de uso
+
+#### Users
 
 ##### `createUser`
 
