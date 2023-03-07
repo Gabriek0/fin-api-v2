@@ -5,13 +5,13 @@
 <h1 align="center">FinAPI V2</h1>
 
 <div align="center">
-  <a href="#tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#testes-unitarios">Testes Unitários</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#testes-integrados">Testes Integrados</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#nut_and_bolt-Tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-testes-unitarios">Testes Unitários</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-testes-integrados">Testes Integrados</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#casos-de-uso">Casos de Uso</a>
 </div>
 
-### :computer: Projeto {#projects}
+### :computer: Projeto
 
 FinAPI é uma API para controles financeiros. Dentro da trilha do Ignite, construímos a API sem aplicar estruturação de pastas, utilização de banco de dados, princípios SOLID, e Docker. Essa versão 2.0 trás todos esses detalhes, porém a aplicação já vem pré-elaborada.
 
@@ -19,7 +19,7 @@ A versão antiga você pode conferir aqui 👉 [FinAPI](https://github.com/Gabri
 
 Assim, o principal desafio aqui é a construção de `Testes Unitários` e `Testes de Integração` utilizando o _Jest_.
 
-### :nut_and_bolt: Tecnologias {#tecnologias}
+### :nut_and_bolt: Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
@@ -37,15 +37,15 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 [jest]: https://jestjs.io/
 [supertest]: https://www.npmjs.com/package/supertest
 
-### 🧪 Testes Unitários {#testes-unitarios}
+### 🧪 Testes Unitários
 
 Os testes unitários são aplicados nos casos de uso da aplicação. Em ordem temos, dois módulos: **users** e **statements**
 
-### 🧪 Testes Integrados {#testes-integrados}
+### 🧪 Testes Integrados
 
 Os testes integrados estão aplicados de acordo com os controllers. Aplicamos uma conexão com o banco de dados e fazemos uma requisição utilizando o **request** da biblioteca `supertest`.
 
-### Casos de uso {#casos-de-uso}
+### Casos de uso
 
 #### Users
 
