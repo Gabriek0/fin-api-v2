@@ -6,7 +6,7 @@
 
 <div align="center">
   <a href="#nut_and_bolt-Tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-testes-unitarios">Testes Unitários</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-testes-unitários">Testes Unitários</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-testes-integrados">Testes Integrados</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#casos-de-uso">Casos de Uso</a>
 </div>
