@@ -1,5 +1,5 @@
 import { getRepository, Repository } from "typeorm";
-import { dataSource } from "../../../database/data-source";
+import dataSource from "../../../database/data-source";
 
 import { Statement } from "../entities/Statement";
 import { ICreateStatementDTO } from "../useCases/createStatement/ICreateStatementDTO";

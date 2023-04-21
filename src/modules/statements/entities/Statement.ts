@@ -6,8 +6,8 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { v4 as uuid } from "uuid";
 
+import { v4 as uuid } from "uuid";
 import { User } from "../../users/entities/User";
 
 export enum OperationType {

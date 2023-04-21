@@ -2,7 +2,7 @@ import request from "supertest";
 import { app } from "../../../../app";
 
 import { DataSource } from "typeorm";
-import { createConnection } from "../../../../database";
+import createConnection from "../../../../database";
 import { ICreateUserDTO } from "../../../users/useCases/createUser/ICreateUserDTO";
 
 let connection: DataSource;

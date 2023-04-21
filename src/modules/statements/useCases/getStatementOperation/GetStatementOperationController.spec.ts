@@ -1,5 +1,5 @@
 import { DataSource } from "typeorm";
-import { createConnection } from "../../../../database";
+import createConnection from "../../../../database";
 
 import request from "supertest";
 import { app } from "../../../../app";

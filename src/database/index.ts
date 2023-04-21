@@ -1,6 +1,6 @@
 import { DataSource } from "typeorm";
 
-import { dataSource } from "./data-source";
+import dataSource from "./data-source";
 
 function createConnection(host = "database"): Promise<DataSource> {
   return dataSource
@@ -14,4 +14,4 @@ function createConnection(host = "database"): Promise<DataSource> {
     .initialize();
 }
 
-export { createConnection };
+export default createConnection;

@@ -9,11 +9,16 @@ import "./shared/container";
 
 import { router } from "./routes";
 import { AppError } from "./shared/errors/AppError";
-import { createConnection } from "./database";
 
-createConnection("");
+import createConnection from "./database";
 
 dotenv.config();
+
+createConnection("database")
+  .then(async () => {
+    console.log("Initializing the database...");
+  })
+  .catch((err) => console.log(err));
 
 const app = express();
 
