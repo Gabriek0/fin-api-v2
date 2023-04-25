@@ -1,5 +1,4 @@
 import { inject, injectable } from "tsyringe";
-
 import { IUsersRepository } from "../../../users/repositories/IUsersRepository";
 import { IStatementsRepository } from "../../repositories/IStatementsRepository";
 import { CreateStatementError } from "./CreateStatementError";
@@ -15,14 +14,23 @@ export class CreateStatementUseCase {
     private statementsRepository: IStatementsRepository
   ) {}
 
-  async execute({ user_id, type, amount, description }: ICreateStatementDTO) {
+  async execute({
+    user_id,
+    type,
+    sender_id,
+    amount,
+    description,
+  }: ICreateStatementDTO) {
     const user = await this.usersRepository.findById(user_id);
+
+    // user_id => sender_id
+    // SENDER_ID => user_id;
 
     if (!user) {
       throw new CreateStatementError.UserNotFound();
     }
 
-    if (type === "withdraw") {
+    if (type !== "deposit") {
       const { balance } = await this.statementsRepository.getUserBalance({
         user_id,
       });
@@ -33,7 +41,8 @@ export class CreateStatementUseCase {
     }
 
     const statementOperation = await this.statementsRepository.create({
-      user_id,
+      user_id: sender_id ? sender_id : user_id,
+      sender_id: user_id ? user_id : sender_id,
       type,
       amount,
       description,

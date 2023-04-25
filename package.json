@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn ./src/server.ts",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli schema:drop -d ./src/database/data-source.ts",
     "migration-run": "ts-node-dev  -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run -d \"./src/database/data-source.ts\"",
     "migration-revert": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:revert -d ./src/database/data-source.ts",
     "test": "NODE_ENV=test jest --runInBand --forceExit"
