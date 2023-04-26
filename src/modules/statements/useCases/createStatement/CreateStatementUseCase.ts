@@ -15,22 +15,27 @@ export class CreateStatementUseCase {
   ) {}
 
   async execute({
-    user_id,
+    user_id, // USER LOGGED
     type,
-    sender_id,
+    sender_id: recipient_id, // RECIPIENT ID OF USER
     amount,
     description,
   }: ICreateStatementDTO) {
     const user = await this.usersRepository.findById(user_id);
+    const recipient = await this.usersRepository.findById(recipient_id);
 
     // user_id => sender_id
     // SENDER_ID => user_id;
 
-    if (!user) {
+    if (!user || !recipient) {
       throw new CreateStatementError.UserNotFound();
     }
 
-    if (type !== "deposit") {
+    if (user.id === recipient.id && type === "transfer") {
+      throw new CreateStatementError.ItsYou();
+    }
+
+    if (type === "withdraw" || type === "transfer") {
       const { balance } = await this.statementsRepository.getUserBalance({
         user_id,
       });
@@ -40,9 +45,23 @@ export class CreateStatementUseCase {
       }
     }
 
+    if (type !== "transfer") {
+      recipient_id = "null";
+    }
+
+    if (type === "transfer") {
+      await this.statementsRepository.create({
+        user_id: recipient_id,
+        sender_id: user_id,
+        amount,
+        description,
+        type,
+      });
+    }
+
     const statementOperation = await this.statementsRepository.create({
-      user_id: sender_id ? sender_id : user_id,
-      sender_id: user_id ? user_id : sender_id,
+      user_id,
+      sender_id: "null",
       type,
       amount,
       description,

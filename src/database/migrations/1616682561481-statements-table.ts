@@ -17,7 +17,8 @@ export class accountsTable1616682561481 implements MigrationInterface {
           },
           {
             name: "sender_id",
-            type: "uuid",
+            type: "varchar",
+            isNullable: true,
           },
           {
             name: "description",
